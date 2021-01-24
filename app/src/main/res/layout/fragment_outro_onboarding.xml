@@ -11,30 +11,30 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.onboarding.OnboardingIntroFragment">
+            tools:context=".ui.onboarding.OnboardingOutroFragment">
 
             <ImageView
-                android:id="@+id/shopping"
+                android:id="@+id/delivery"
                 android:layout_width="@dimen/dimen_240"
                 android:layout_height="@dimen/dimen_240"
                 android:contentDescription="@string/onboarding_image"
-                android:src="@drawable/ic_shopping"
+                android:src="@drawable/ic_delivery"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/intro1_textview"
+                android:id="@+id/outro1_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/buy_shoes_online"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="@string/free_home_delivery"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_20"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shopping"
+                app:layout_constraintTop_toBottomOf="@+id/delivery"
                 />
 
             <TextView
@@ -42,22 +42,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_16"
-                android:text="@string/explore_vast_selection_of_products_from_top_brands"
+                android:text="@string/shop_from_a_wide_range_of_shoes_with_cash_on_delivey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/intro1_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/outro1_textview" />
 
             <Button
-                android:id="@+id/introNext_button"
+                android:id="@+id/finish_button"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dimen_48"
                 android:layout_marginBottom="@dimen/dimen_32"
-                android:text="@string/next"
+                android:text="@string/finish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
+
+
+

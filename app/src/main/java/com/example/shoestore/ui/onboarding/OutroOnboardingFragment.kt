@@ -7,29 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentIntroOnboardingBinding
+import com.example.shoestore.databinding.FragmentOutroOnboardingBinding
 
-class IntroOnboardingFragment : Fragment() {
+class OutroOnboardingFragment : Fragment() {
 
-    private lateinit var binding : FragmentIntroOnboardingBinding
+    private lateinit var binding : FragmentOutroOnboardingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        (activity as AppCompatActivity).supportActionBar?.title = "Instructions (1/2)"
+        (activity as AppCompatActivity).supportActionBar?.title = "Instructions (2/2)"
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_intro_onboarding,container,false)
-
-        binding.introNextButton.setOnClickListener { view : View ->
-            view.findNavController().navigate(IntroOnboardingFragmentDirections.actionIntroOnboardingFragmentToOutroOnboardingFragment())
-        }
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_outro_onboarding,container,false)
 
         return binding.root
-
     }
 
 }
