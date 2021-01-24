@@ -8,4 +8,9 @@
     <string name="login">LOGIN</string>
     <string name="or">or</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="onboarding_image">Onboarding Image</string>
+    <string name="buy_shoes_online">Buy Shoes Online</string>
+    <string name="explore_vast_selection_of_products_from_top_brands">Explore vast selection of products from top brands.</string>
+    <string name="next">Next</string>
+
 </resources>
