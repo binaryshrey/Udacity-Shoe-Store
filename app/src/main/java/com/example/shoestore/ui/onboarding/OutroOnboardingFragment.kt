@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.shoestore.R
-import com.example.shoestore.databinding.FragmentIntroOnboardingBinding
 import com.example.shoestore.databinding.FragmentOutroOnboardingBinding
 
 class OutroOnboardingFragment : Fragment() {
