@@ -25,5 +25,15 @@
     <fragment
         android:id="@+id/outroOnboardingFragment"
         android:name="com.example.shoestore.ui.onboarding.OutroOnboardingFragment"
-        android:label="OutroOnboardingFragment" />
+        android:label="OutroOnboardingFragment" >
+        <action
+            android:id="@+id/action_outroOnboardingFragment_to_shoeListFragment"
+            app:destination="@id/shoeListFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeListFragment"
+        android:name="com.example.shoestore.ui.ShoeListFragment"
+        android:label="ShoeListFragment" />
 </navigation>

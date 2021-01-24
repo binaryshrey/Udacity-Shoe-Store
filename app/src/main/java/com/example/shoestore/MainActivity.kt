@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val topLevelDestinations = mutableSetOf<Int>()
         topLevelDestinations.add(R.id.loginFragment)
         topLevelDestinations.add(R.id.introOnboardingFragment)
+        topLevelDestinations.add(R.id.shoeListFragment)
 
         appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
