@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentOutroOnboardingBinding
+import com.example.shoestore.viewmodel.ShoeViewModel
 
 class OutroOnboardingFragment : Fragment() {
 
     private lateinit var binding : FragmentOutroOnboardingBinding
+    private lateinit var viewModel : ShoeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +27,17 @@ class OutroOnboardingFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Instructions (2/2)"
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_outro_onboarding,container,false)
+        viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
 
-        binding.finishButton.setOnClickListener { view : View ->
-            view.findNavController().navigate(OutroOnboardingFragmentDirections.actionOutroOnboardingFragmentToShoeListFragment())
-        }
+        binding.lifecycleOwner = this
+        binding.shoeViewModel = viewModel
+
+        viewModel.eventOpenShoeList.observe(viewLifecycleOwner, { outroDoneClicked ->
+            if(outroDoneClicked){
+                findNavController().navigate(OutroOnboardingFragmentDirections.actionOutroOnboardingFragmentToShoeListFragment())
+                viewModel.onOpenShoeListComplete()
+            }
+        })
 
         return binding.root
     }

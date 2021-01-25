@@ -25,6 +25,10 @@ class ShoeViewModel : ViewModel() {
     val eventIntro: LiveData<Boolean>
         get() = _eventIntro
 
+    private val _eventOpenShoeList = MutableLiveData<Boolean>()
+    val eventOpenShoeList : LiveData<Boolean>
+        get() = _eventOpenShoeList
+
 
     init {
         _email.value = ""
@@ -50,5 +54,14 @@ class ShoeViewModel : ViewModel() {
     fun onIntro(){
         _eventIntro.value = true
     }
+
+    fun onOpenShoeList(){
+        _eventOpenShoeList.value = true
+    }
+
+    fun onOpenShoeListComplete(){
+        _eventOpenShoeList.value = false
+    }
+
 }
 
