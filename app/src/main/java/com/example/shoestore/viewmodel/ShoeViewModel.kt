@@ -54,6 +54,9 @@ class ShoeViewModel : ViewModel() {
     fun onIntro(){
         _eventIntro.value = true
     }
+    fun onIntroComplete(){
+        _eventIntro.value = false
+    }
 
     fun onOpenShoeList(){
         _eventOpenShoeList.value = true

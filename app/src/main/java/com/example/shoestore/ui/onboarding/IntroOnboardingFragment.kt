@@ -37,6 +37,7 @@ class IntroOnboardingFragment : Fragment() {
         viewModel.eventIntro.observe(viewLifecycleOwner, {introNextClicked ->
             if(introNextClicked){
                 findNavController().navigate(IntroOnboardingFragmentDirections.actionIntroOnboardingFragmentToOutroOnboardingFragment())
+                viewModel.onIntroComplete()
             }
         })
 
