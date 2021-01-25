@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.shoestore.MainActivity
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentLoginBinding
+import com.example.shoestore.viewmodel.ShoeViewModel
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding : FragmentLoginBinding
+    private val viewModel : ShoeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,18 +27,16 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
         (activity as AppCompatActivity).supportActionBar?.title = "Shoe Store"
 
+        binding.lifecycleOwner = this
+        binding.shoeViewModel = viewModel
 
-        binding.loginButton.setOnClickListener { view : View ->
-            //Toast.makeText(context,"Login",Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToIntroOnboardingFragment())
-
-        }
-        binding.signupButton.setOnClickListener { view : View ->
-            //Toast.makeText(context,"Sign Up",Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToIntroOnboardingFragment())
-
-        }
-
+        viewModel.eventLogin.observe(viewLifecycleOwner, { isLoggedIn ->
+            if (isLoggedIn) {
+                viewModel.storeLoginState(activity as MainActivity, true)
+                viewModel.onLoginComplete()
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToIntroOnboardingFragment())
+            }
+        })
         return binding.root
     }
 
