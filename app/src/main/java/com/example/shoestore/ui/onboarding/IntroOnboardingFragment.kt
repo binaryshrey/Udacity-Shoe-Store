@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentIntroOnboardingBinding
+import com.example.shoestore.viewmodel.ShoeViewModel
 
 class IntroOnboardingFragment : Fragment() {
 
     private lateinit var binding : FragmentIntroOnboardingBinding
+    private lateinit var viewModel : ShoeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,9 +29,16 @@ class IntroOnboardingFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_intro_onboarding,container,false)
 
-        binding.introNextButton.setOnClickListener { view : View ->
-            view.findNavController().navigate(IntroOnboardingFragmentDirections.actionIntroOnboardingFragmentToOutroOnboardingFragment())
-        }
+        viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
+
+        binding.lifecycleOwner = this
+        binding.shoeViewModel = viewModel
+
+        viewModel.eventIntro.observe(viewLifecycleOwner, {introNextClicked ->
+            if(introNextClicked){
+                findNavController().navigate(IntroOnboardingFragmentDirections.actionIntroOnboardingFragmentToOutroOnboardingFragment())
+            }
+        })
 
         return binding.root
 

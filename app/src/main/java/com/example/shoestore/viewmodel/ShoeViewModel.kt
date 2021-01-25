@@ -21,6 +21,11 @@ class ShoeViewModel : ViewModel() {
     val eventLogin: LiveData<Boolean>
         get() = _eventLogin
 
+    private val _eventIntro = MutableLiveData<Boolean>()
+    val eventIntro: LiveData<Boolean>
+        get() = _eventIntro
+
+
     init {
         _email.value = ""
         _password.value = ""
@@ -40,6 +45,10 @@ class ShoeViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+    }
+
+    fun onIntro(){
+        _eventIntro.value = true
     }
 }
 
