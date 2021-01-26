@@ -59,20 +59,20 @@ class ShoeViewModel : ViewModel() {
         _password.value = ""
         _shoes.value = ArrayList()
     }
-
+    //storing login state in SharedPreferences
     fun storeLoginState(activity: MainActivity, isLoggedIn: Boolean) {
         PreferencesUtil.storeLoginStateToPreferences(activity, isLoggedIn)
     }
-
+    //getting login state in SharedPreferences
     fun getLoginState(activity: MainActivity) {
         val isLoggedIn = PreferencesUtil.getLoginStateFromPreferences(activity)
         _isLoggedIn.value = isLoggedIn
     }
-
+    //on login event
     fun onLogin() {
         _eventLogin.value = true
     }
-
+    //on login complete event
     fun onLoginComplete() {
         _eventLogin.value = false
     }
@@ -104,7 +104,7 @@ class ShoeViewModel : ViewModel() {
     fun onAddShoeDetailsComplete(){
         _eventAddShoeDetails.value = false
     }
-
+    //on shoe save event
     fun onEventSave(shoe: Shoe?){
         if(shoe != null){
             shoeList.add(shoe)

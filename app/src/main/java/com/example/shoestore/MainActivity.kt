@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
+        //setting topLevelDestinations so as to hide up button from the list of below fragments
         val topLevelDestinations = mutableSetOf<Int>()
         topLevelDestinations.add(R.id.loginFragment)
         topLevelDestinations.add(R.id.introOnboardingFragment)
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
+        //setting up navController
         val navController = this.findNavController(R.id.navHostFragment)
         NavigationUI.setupActionBarWithNavController(this,navController, appBarConfiguration)
 
@@ -41,8 +43,10 @@ class MainActivity : AppCompatActivity() {
 //                Navigation.findNavController(this, R.id.navHostFragment)
 //                    .navigate(R.id.action_loginFragment_to_shoeListFragment)
 //            }
+            //getting current fragment
             val currentFragment = NavHostFragment.findNavController(navHostFragment).currentDestination?.id
             if(isLoggedIn){
+                //various checks to avoid stacking up unwanted views and navigating accordingly
                 if(currentFragment == R.id.loginFragment){
                     navController.popBackStack()
                     navController.navigate(R.id.shoeListFragment)
@@ -50,14 +54,12 @@ class MainActivity : AppCompatActivity() {
                 if(currentFragment == R.id.introOnboardingFragment){
                     navController.popBackStack()
                     navController.navigate(R.id.introOnboardingFragment)
-
                 }
                 if(currentFragment == R.id.outroOnboardingFragment){
                     navController.popBackStack()
                     navController.navigate(R.id.outroOnboardingFragment)
                 }
             }
-
         })
         viewModel.isLoggedOut.observe(this, { isLoggedOut ->
             if (isLoggedOut) {

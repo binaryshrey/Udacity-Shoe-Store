@@ -34,8 +34,10 @@ class IntroOnboardingFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.shoeViewModel = viewModel
 
+        //observe intro-event
         viewModel.eventIntro.observe(viewLifecycleOwner, {introNextClicked ->
             if(introNextClicked){
+                //navigate to outro-onboarding fragment
                 findNavController().navigate(IntroOnboardingFragmentDirections.actionIntroOnboardingFragmentToOutroOnboardingFragment())
                 viewModel.onIntroComplete()
             }

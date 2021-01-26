@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginEnd="@dimen/dimen_32"
-                android:hint="@string/username"
+                android:hint="@string/email"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

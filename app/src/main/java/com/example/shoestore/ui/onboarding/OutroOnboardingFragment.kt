@@ -32,8 +32,10 @@ class OutroOnboardingFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.shoeViewModel = viewModel
 
+        //observe opening of shoeList fragment
         viewModel.eventOpenShoeList.observe(viewLifecycleOwner, { outroDoneClicked ->
             if(outroDoneClicked){
+                //navigate to shoe List fragmnet
                 findNavController().navigate(OutroOnboardingFragmentDirections.actionOutroOnboardingFragmentToShoeListFragment())
                 viewModel.onOpenShoeListComplete()
             }

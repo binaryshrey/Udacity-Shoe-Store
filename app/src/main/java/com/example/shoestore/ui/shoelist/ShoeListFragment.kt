@@ -31,6 +31,7 @@ class ShoeListFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.shoeViewModel = viewModel
 
+        //add views to shoeList
         //https://stackoverflow.com/questions/2395769/how-to-programmatically-add-views-to-views
         viewModel.shoes.observe(viewLifecycleOwner, {shoes ->
             binding.shoeItemList.removeAllViews()
@@ -42,16 +43,14 @@ class ShoeListFragment : Fragment() {
             }
         } )
 
+        //observe adding to shoeDetails event
         viewModel.eventAddShoeDetails.observe(viewLifecycleOwner,{ onAddShoeClicked ->
             if(onAddShoeClicked){
+                //navigate to shoe details fragment
                 findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
                 viewModel.onAddShoeDetailsComplete()
             }
         })
-
-        binding.addButton.setOnClickListener { view : View ->
-            view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
-        }
         return binding.root
     }
 

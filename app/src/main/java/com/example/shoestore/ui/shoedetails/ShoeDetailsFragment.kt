@@ -32,15 +32,19 @@ class ShoeDetailsFragment : Fragment() {
         binding.shoeViewModel = viewModel
         binding.shoes = Shoe()
 
+        //observe save event
         viewModel.eventSave.observe(viewLifecycleOwner, {isSaved ->
             if(isSaved){
+                //navigate to shoelist fragment
                 findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
                 viewModel.onEventSaveCompleted()
             }
         })
 
+        //observe cancel event
         viewModel.eventCancel.observe(viewLifecycleOwner,{ isCanceled ->
             if(isCanceled){
+                //navigate to shoelist fragment
                 findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
                 viewModel.onEventCancelCompleted()
             }
