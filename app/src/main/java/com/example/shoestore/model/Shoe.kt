@@ -1,4 +1,4 @@
-package com.example.shoestore.ui.model
+package com.example.shoestore.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -9,4 +9,4 @@ data class Shoe(
     var size: String = "",
     var company: String = "",
     var description: String = "",
-    val images: List<Int> = mutableListOf()) : Parcelable
+    val images: List<String> = mutableListOf()) : Parcelable

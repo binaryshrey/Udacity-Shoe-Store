@@ -5,16 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeDetailsBinding
+import com.example.shoestore.model.Shoe
+import com.example.shoestore.viewmodel.ShoeViewModel
 
 class ShoeDetailsFragment : Fragment() {
 
     private lateinit var binding : FragmentShoeDetailsBinding
+    private val viewModel : ShoeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,15 +28,23 @@ class ShoeDetailsFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_shoe_details,container,false)
 
-        binding.saveButton.setOnClickListener { view : View ->
-            Toast.makeText(context,"Saved",Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
-        }
-        binding.cancelButton.setOnClickListener { view : View ->
-            Toast.makeText(context,"Cancel",Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
+        binding.lifecycleOwner = this
+        binding.shoeViewModel = viewModel
+        binding.shoes = Shoe()
 
-        }
+        viewModel.eventSave.observe(viewLifecycleOwner, {isSaved ->
+            if(isSaved){
+                findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
+                viewModel.onEventSaveCompleted()
+            }
+        })
+
+        viewModel.eventCancel.observe(viewLifecycleOwner,{ isCanceled ->
+            if(isCanceled){
+                findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
+                viewModel.onEventCancelCompleted()
+            }
+        })
 
         return binding.root
     }

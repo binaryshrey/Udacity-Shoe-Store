@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="shoeViewModel"
+            type="com.example.shoestore.viewmodel.ShoeViewModel" />
+
+        <variable
+            name="shoes"
+            type="com.example.shoestore.model.Shoe" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,9 +41,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_marginEnd="@dimen/dimen_32"
                 android:hint="@string/shoe_name"
                 app:layout_constraintBottom_toTopOf="@+id/size_TIL"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +54,7 @@
                     android:id="@+id/shoename_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={shoes.name}"
                     android:imeOptions="actionNext"
                     android:inputType="text" />
 
@@ -54,8 +65,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_32"
                 android:hint="@string/size"
                 app:layout_constraintBottom_toTopOf="@+id/company_TIL"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
                     android:inputType="number"
+                    android:text="@={shoes.size}"
                     android:maxLength="2" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -77,8 +89,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_32"
                 android:hint="@string/company"
                 app:layout_constraintBottom_toTopOf="@+id/description_TIL"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
+                    android:text="@={shoes.company}"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -99,9 +112,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="@dimen/dimen_32"
 
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="@dimen/dimen_32"
                 android:hint="@string/description"
                 app:layout_constraintBottom_toTopOf="@+id/save_button"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
                     android:inputType="textImeMultiLine|text"
+                    android:text="@={shoes.description}"
                     android:maxLines="2" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,10 +136,11 @@
                 android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_64"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_32"
                 android:text="@string/save"
                 app:cornerRadius="@dimen/dimen_32"
+                android:onClick="@{() -> shoeViewModel.onEventSave(shoes)}"
                 app:layout_constraintBottom_toTopOf="@+id/cancel_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -137,10 +152,11 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_64"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_32"
                 android:text="@string/cancel"
                 app:cornerRadius="@dimen/dimen_32"
+                android:onClick="@{() -> shoeViewModel.onEventCancel()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

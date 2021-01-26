@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.shoestore.MainActivity
+import com.example.shoestore.model.Shoe
 import com.example.shoestore.utils.PreferencesUtil
 
 class ShoeViewModel : ViewModel() {
@@ -29,10 +30,28 @@ class ShoeViewModel : ViewModel() {
     val eventOpenShoeList : LiveData<Boolean>
         get() = _eventOpenShoeList
 
+    private val _eventAddShoeDetails = MutableLiveData<Boolean>()
+    val eventAddShoeDetails : LiveData<Boolean>
+        get() = _eventAddShoeDetails
+
+    private val _eventSave = MutableLiveData<Boolean>()
+    val eventSave : LiveData<Boolean>
+        get() = _eventSave
+
+    private val _eventCancel = MutableLiveData<Boolean>()
+    val eventCancel : LiveData<Boolean>
+        get() = _eventCancel
+
+    private val _shoes = MutableLiveData<MutableList<Shoe>>()
+    val shoes : LiveData<MutableList<Shoe>>
+        get() = _shoes
+    private val shoeList = ArrayList<Shoe>()
 
     init {
         _email.value = ""
         _password.value = ""
+        _shoes.value = ArrayList()
+
     }
 
     fun storeLoginState(activity: MainActivity, isLoggedIn: Boolean) {
@@ -65,6 +84,31 @@ class ShoeViewModel : ViewModel() {
     fun onOpenShoeListComplete(){
         _eventOpenShoeList.value = false
     }
+    fun onAddShoeDetails(){
+        _eventAddShoeDetails.value = true
+    }
+    fun onAddShoeDetailsComplete(){
+        _eventAddShoeDetails.value = false
+    }
+
+    fun onEventSave(shoe: Shoe?){
+        if(shoe != null){
+            shoeList.add(shoe)
+            _shoes.value = shoeList
+            _eventSave.value = true
+        }
+    }
+    fun onEventSaveCompleted(){
+        _eventSave.value = false
+
+    }
+    fun onEventCancel(){
+        _eventCancel.value = true
+    }
+    fun onEventCancelCompleted(){
+        _eventCancel.value = false
+    }
+
 
 }
 
