@@ -1,10 +1,8 @@
 package com.example.shoestore.ui.shoelist
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -27,6 +25,8 @@ class ShoeListFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_shoe_list,container,false)
         (activity as AppCompatActivity).supportActionBar?.title = "Shoe Store"
+        setHasOptionsMenu(true)
+
 
         binding.lifecycleOwner = this
         binding.shoeViewModel = viewModel
@@ -52,8 +52,12 @@ class ShoeListFragment : Fragment() {
         binding.addButton.setOnClickListener { view : View ->
             view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
-
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
     }
 
 }

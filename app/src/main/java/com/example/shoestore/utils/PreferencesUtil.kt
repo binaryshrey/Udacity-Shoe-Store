@@ -15,7 +15,7 @@ class PreferencesUtil {
             sharedPreferences.edit().putBoolean(USER_LOGIN_STATE, isLoggedIn).apply()
         }
 
-        fun getLoginFromPreferences(activity: Activity): Boolean {
+        fun getLoginStateFromPreferences(activity: Activity): Boolean {
             val sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE)
             return sharedPreferences.getBoolean(USER_LOGIN_STATE, false)
         }

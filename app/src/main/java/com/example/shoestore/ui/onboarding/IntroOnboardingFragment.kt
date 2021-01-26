@@ -42,7 +42,6 @@ class IntroOnboardingFragment : Fragment() {
         })
 
         return binding.root
-
     }
 
 }
