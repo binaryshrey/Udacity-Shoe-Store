@@ -4,17 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="shoeViewModel"
             type="com.example.shoestore.viewmodel.ShoeViewModel" />
     </data>
-
+    <!--    Used Constraint layout as it makes handling of complex design much easier with the Design Tab-->
+    <!--    Also, constraint layout has tremendous performance advantage as compared to other layout-->
+    <!--    https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/dimen_8"
         tools:context=".ui.shoelist.ShoelistFragment">
 
+        <!--    Used ScrollView to allow views to be displayed when the screen is rotated-->
         <ScrollView
             android:id="@+id/shoeList"
             android:layout_width="match_parent"
@@ -24,6 +28,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <!--            LinearLayout is a view group that aligns all children in a single direction, vertically or horizontally.-->
+            <!--            Here LinearLayout is used as we can vertically stack all the shoesItem -->
             <LinearLayout
                 android:id="@+id/shoeItemList"
                 android:layout_width="match_parent"
@@ -39,9 +45,9 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/dimen_16"
             android:layout_marginBottom="@dimen/dimen_16"
-            android:src="@drawable/ic_add"
-            android:onClick="@{() -> shoeViewModel.onAddShoeDetails()}"
             android:contentDescription="@string/add_shoe"
+            android:onClick="@{() -> shoeViewModel.onAddShoeDetails()}"
+            android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

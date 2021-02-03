@@ -2,94 +2,100 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="shoes"
             type="com.example.shoestore.model.Shoe" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
+    <!--    Used Constraint layout as it makes handling of complex design much easier with the Design Tab-->
+    <!--    Also, constraint layout has tremendous performance advantage as compared to other layout-->
+    <!--    https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html-->
 
-    <ImageView
-        android:id="@+id/defaultShoe_imageView"
-        android:layout_width="@dimen/dimen_128"
-        android:layout_height="@dimen/dimen_128"
-        android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:contentDescription="@string/default_shoe_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_shoes" />
-
-    <TextView
-        android:id="@+id/shoeName_textView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_16"
-        android:layout_marginBottom="@dimen/dimen_16"
-        app:layout_constraintBottom_toTopOf="@+id/shoeSize_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@={shoes.name}"
-        app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
-        app:layout_constraintTop_toTopOf="@+id/defaultShoe_imageView"
-        tools:text="@string/shoe_name" />
-
-    <TextView
-        android:id="@+id/shoeSize_textView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_16"
-        android:layout_marginBottom="@dimen/dimen_16"
-        android:text="@={shoes.size}"
-        app:layout_constraintBottom_toTopOf="@+id/company_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/shoeName_textView"
-        tools:text="@string/size_7" />
-
-    <TextView
-        android:id="@+id/company_textView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_16"
-        android:layout_marginBottom="@dimen/dimen_16"
-        android:text="@={shoes.company}"
-        app:layout_constraintBottom_toTopOf="@+id/description_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/shoeSize_textView"
-        tools:text="@string/company" />
-
-    <TextView
-        android:id="@+id/description_textView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_16"
-        android:text="@={shoes.description}"
-        app:layout_constraintBottom_toBottomOf="@+id/defaultShoe_imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/company_textView"
-        tools:text="@string/description" />
-
-    <View
-        android:id="@+id/horizontalBar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginEnd="@dimen/dimen_8"
-        android:background="@color/lightGrey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_textView" />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/defaultShoe_imageView"
+            android:layout_width="@dimen/dimen_128"
+            android:layout_height="@dimen/dimen_128"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:contentDescription="@string/default_shoe_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_shoes" />
+
+        <TextView
+            android:id="@+id/shoeName_textView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:text="@={shoes.name}"
+            app:layout_constraintBottom_toTopOf="@+id/shoeSize_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
+            app:layout_constraintTop_toTopOf="@+id/defaultShoe_imageView"
+            tools:text="@string/shoe_name" />
+
+        <TextView
+            android:id="@+id/shoeSize_textView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:text="@={shoes.size}"
+            app:layout_constraintBottom_toTopOf="@+id/company_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/shoeName_textView"
+            tools:text="@string/size_7" />
+
+        <TextView
+            android:id="@+id/company_textView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:text="@={shoes.company}"
+            app:layout_constraintBottom_toTopOf="@+id/description_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/shoeSize_textView"
+            tools:text="@string/company" />
+
+        <TextView
+            android:id="@+id/description_textView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:text="@={shoes.description}"
+            app:layout_constraintBottom_toBottomOf="@+id/defaultShoe_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/company_textView"
+            tools:text="@string/description" />
+
+        <View
+            android:id="@+id/horizontalBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:background="@color/lightGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

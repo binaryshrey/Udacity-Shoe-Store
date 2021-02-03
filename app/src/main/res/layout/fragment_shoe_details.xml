@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="shoeViewModel"
             type="com.example.shoestore.viewmodel.ShoeViewModel" />
@@ -13,11 +14,15 @@
             type="com.example.shoestore.model.Shoe" />
     </data>
 
+    <!--    Used ScrollView to allow views to be displayed when the screen is rotated -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+        <!--    Used Constraint layout as it makes handling of complex design much easier with the Design Tab-->
+        <!--    Also, constraint layout has tremendous performance advantage as compared to other layout-->
+        <!--    https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,9 +59,9 @@
                     android:id="@+id/shoename_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={shoes.name}"
                     android:imeOptions="actionNext"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={shoes.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,8 +84,8 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
                     android:inputType="number"
-                    android:text="@={shoes.size}"
-                    android:maxLength="2" />
+                    android:maxLength="2"
+                    android:text="@={shoes.size}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,8 +107,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
-                    android:text="@={shoes.company}"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={shoes.company}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,8 +132,8 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
                     android:inputType="textImeMultiLine|text"
-                    android:text="@={shoes.description}"
-                    android:maxLines="2" />
+                    android:maxLines="2"
+                    android:text="@={shoes.description}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -138,9 +143,9 @@
                 android:layout_height="@dimen/dimen_64"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginEnd="@dimen/dimen_32"
+                android:onClick="@{() -> shoeViewModel.onEventSave(shoes)}"
                 android:text="@string/save"
                 app:cornerRadius="@dimen/dimen_32"
-                android:onClick="@{() -> shoeViewModel.onEventSave(shoes)}"
                 app:layout_constraintBottom_toTopOf="@+id/cancel_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -154,9 +159,9 @@
                 android:layout_height="@dimen/dimen_64"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginEnd="@dimen/dimen_32"
+                android:onClick="@{() -> shoeViewModel.onEventCancel()}"
                 android:text="@string/cancel"
                 app:cornerRadius="@dimen/dimen_32"
-                android:onClick="@{() -> shoeViewModel.onEventCancel()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

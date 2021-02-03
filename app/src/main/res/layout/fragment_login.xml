@@ -4,16 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="shoeViewModel"
             type="com.example.shoestore.viewmodel.ShoeViewModel" />
     </data>
 
+    <!--    Used ScrollView to allow views to be displayed when the screen is rotated-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+        <!--    Used Constraint layout as it makes handling of complex design much easier with the Design Tab-->
+        <!--    Also, constraint layout has tremendous performance advantage as compared to other layout-->
+        <!--    https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_constraintLayout"
             android:layout_width="match_parent"
@@ -50,8 +55,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
-                    android:text="@={shoeViewModel.email}"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={shoeViewModel.email}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -71,8 +76,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
-                    android:text="@={shoeViewModel.password}"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@={shoeViewModel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -81,9 +86,9 @@
                 android:layout_height="@dimen/dimen_64"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginEnd="@dimen/dimen_32"
+                android:onClick="@{() -> shoeViewModel.onLogin()}"
                 android:text="@string/login"
                 app:cornerRadius="@dimen/dimen_32"
-                android:onClick="@{() -> shoeViewModel.onLogin()}"
                 app:layout_constraintBottom_toTopOf="@+id/or_textview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -106,8 +111,8 @@
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginEnd="@dimen/dimen_32"
                 android:layout_marginBottom="@dimen/dimen_16"
-                android:text="@string/sign_up"
                 android:onClick="@{() -> shoeViewModel.onLogin()}"
+                android:text="@string/sign_up"
                 android:textColor="@color/purple_500"
                 app:backgroundTint="@color/white"
                 app:cornerRadius="@dimen/dimen_32"

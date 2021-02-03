@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--    Used Constraint layout as it makes handling of complex design much easier with the Design Tab-->
+    <!--    Also, constraint layout has tremendous performance advantage as compared to other layout-->
+    <!--    https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

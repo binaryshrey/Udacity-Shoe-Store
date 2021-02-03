@@ -4,15 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="shoeViewModel"
             type="com.example.shoestore.viewmodel.ShoeViewModel" />
     </data>
 
+    <!--    Used ScrollView to allow views to be displayed when the screen is rotated-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+
+        <!--    Used Constraint layout as it makes handling of complex design much easier with the Design Tab-->
+        <!--    Also, constraint layout has tremendous performance advantage as compared to other layout-->
+        <!--    https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,8 +46,7 @@
                 android:textSize="@dimen/text_20"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/delivery"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/delivery" />
 
             <TextView
                 android:id="@+id/intro2_textview"
@@ -60,11 +65,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dimen_48"
                 android:layout_marginBottom="@dimen/dimen_32"
-                android:text="@string/finish"
                 android:onClick="@{() -> shoeViewModel.onOpenShoeList()}"
+                android:text="@string/finish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
