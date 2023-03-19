@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
         binding.shoeViewModel = viewModel
 
         //observe login-event
-        viewModel.eventLogin.observe(viewLifecycleOwner, { isLoggedIn ->
+        viewModel.eventLogin.observe(viewLifecycleOwner) { isLoggedIn ->
             if (isLoggedIn) {
                 //call storeLoginState from viewmodel to store it in sharedPreferences
                 viewModel.storeLoginState(activity as MainActivity, true)
@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
                 //navigate to intro-fragment
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToIntroOnboardingFragment())
             }
-        })
+        }
         return binding.root
     }
 

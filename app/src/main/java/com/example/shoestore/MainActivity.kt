@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -38,36 +37,33 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this,navController, appBarConfiguration)
 
         viewModel.getLoginState(this)
-        viewModel.isLoggedIn.observe(this,{isLoggedIn ->
-//            if(isLoggedIn){
-//                Navigation.findNavController(this, R.id.navHostFragment)
-//                    .navigate(R.id.action_loginFragment_to_shoeListFragment)
-//            }
+        viewModel.isLoggedIn.observe(this) { isLoggedIn ->
             //getting current fragment
-            val currentFragment = NavHostFragment.findNavController(navHostFragment).currentDestination?.id
-            if(isLoggedIn){
+            val currentFragment =
+                NavHostFragment.findNavController(navHostFragment).currentDestination?.id
+            if (isLoggedIn) {
                 //various checks to avoid stacking up unwanted views and navigating accordingly
-                if(currentFragment == R.id.loginFragment){
+                if (currentFragment == R.id.loginFragment) {
                     navController.popBackStack()
                     navController.navigate(R.id.shoeListFragment)
                 }
-                if(currentFragment == R.id.introOnboardingFragment){
+                if (currentFragment == R.id.introOnboardingFragment) {
                     navController.popBackStack()
                     navController.navigate(R.id.introOnboardingFragment)
                 }
-                if(currentFragment == R.id.outroOnboardingFragment){
+                if (currentFragment == R.id.outroOnboardingFragment) {
                     navController.popBackStack()
                     navController.navigate(R.id.outroOnboardingFragment)
                 }
             }
-        })
-        viewModel.isLoggedOut.observe(this, { isLoggedOut ->
+        }
+        viewModel.isLoggedOut.observe(this) { isLoggedOut ->
             if (isLoggedOut) {
                 navController.popBackStack()
                 navController.navigate(R.id.loginFragment)
                 viewModel.onLogOutComplete()
             }
-        })
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

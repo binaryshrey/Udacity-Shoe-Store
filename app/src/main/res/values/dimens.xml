@@ -12,5 +12,6 @@
     <dimen name="dimen_8">8dp</dimen>
     <dimen name="dimen_24">24dp</dimen>
     <dimen name="dimen_128">128dp</dimen>
+    <dimen name="dimen_96">96dp</dimen>
 
 </resources>

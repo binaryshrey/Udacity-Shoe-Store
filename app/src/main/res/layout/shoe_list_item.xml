@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/defaultShoe_imageView"
-            android:layout_width="@dimen/dimen_128"
-            android:layout_height="@dimen/dimen_128"
+            android:layout_width="@dimen/dimen_96"
+            android:layout_height="@dimen/dimen_96"
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_16"
             android:contentDescription="@string/default_shoe_image"
@@ -42,6 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/defaultShoe_imageView"
             app:layout_constraintTop_toTopOf="@+id/defaultShoe_imageView"
+            app:layout_constraintVertical_chainStyle="spread_inside"
             tools:text="@string/shoe_name" />
 
         <TextView

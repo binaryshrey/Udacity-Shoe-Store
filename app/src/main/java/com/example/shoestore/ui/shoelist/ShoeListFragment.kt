@@ -33,24 +33,25 @@ class ShoeListFragment : Fragment() {
 
         //add views to shoeList
         //https://stackoverflow.com/questions/2395769/how-to-programmatically-add-views-to-views
-        viewModel.shoes.observe(viewLifecycleOwner, {shoes ->
+        viewModel.shoes.observe(viewLifecycleOwner) { shoes ->
             binding.shoeItemList.removeAllViews()
             shoes.forEach { shoe ->
-                val shoeBinding : ShoeListItemBinding = DataBindingUtil.inflate(inflater,R.layout.shoe_list_item,container,false)
+                val shoeBinding: ShoeListItemBinding =
+                    DataBindingUtil.inflate(inflater, R.layout.shoe_list_item, container, false)
                 shoeBinding.shoes = shoe
                 shoeBinding.executePendingBindings()
                 binding.shoeItemList.addView(shoeBinding.root)
             }
-        } )
+        }
 
         //observe adding to shoeDetails event
-        viewModel.eventAddShoeDetails.observe(viewLifecycleOwner,{ onAddShoeClicked ->
-            if(onAddShoeClicked){
+        viewModel.eventAddShoeDetails.observe(viewLifecycleOwner) { onAddShoeClicked ->
+            if (onAddShoeClicked) {
                 //navigate to shoe details fragment
                 findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
                 viewModel.onAddShoeDetailsComplete()
             }
-        })
+        }
         return binding.root
     }
 
