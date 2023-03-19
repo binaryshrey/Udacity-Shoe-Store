@@ -1,1 +1,1 @@
-# Shoe-Store
+# Udacity Shoe Store
